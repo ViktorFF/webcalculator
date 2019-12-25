@@ -14,11 +14,11 @@ public class HistoryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ArrayList<String> history = (ArrayList<String>) req.getSession().getAttribute("history");
         if (!history.isEmpty()) {
-            for (String str: history) {
-                resp.getWriter().println(str);
-            }
-            return;
+            req.setAttribute("flag", true);
+            req.getRequestDispatcher("/history.jsp").forward(req, resp);
+        } else {
+            req.setAttribute("flag", false);
+            resp.getWriter().println("History is empty!");
         }
-        resp.getWriter().println("History is empty!");
     }
 }
