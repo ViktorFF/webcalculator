@@ -34,17 +34,22 @@ public class ChangeParamServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
         String changeParam = (String) req.getSession().getAttribute("changeParam");
         User currentUser = (User) req.getSession().getAttribute("currentUser");
-        if (changeParam.equals("userName")) {
-            currentUser.setName(req.getParameter("newValue"));
-        } else if (changeParam.equals("age")) {
-            currentUser.setAge(Integer.parseInt(req.getParameter("newValue")));
-        } else if (changeParam.equals("login")) {
-            currentUser.setLogin(req.getParameter("newValue"));
-        } else if (changeParam.equals("password")) {
-            currentUser.setPassword(req.getParameter("newValue"));
+        switch (changeParam) {
+            case "userName":
+                currentUser.setName(req.getParameter("newValue"));
+                break;
+            case "age":
+                currentUser.setAge(Integer.parseInt(req.getParameter("newValue")));
+                break;
+            case "login":
+                currentUser.setLogin(req.getParameter("newValue"));
+                break;
+            case "password":
+                currentUser.setPassword(req.getParameter("newValue"));
+                break;
         }
     }
 }

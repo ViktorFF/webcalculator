@@ -18,9 +18,9 @@ public class MainServlet extends HttpServlet {
         String firstElement = req.getParameter("firstElement");
         String secondElement = req.getParameter("secondElement");
         String operation = req.getParameter("operation");
-        int a = 0;
-        int b = 0;
-        double result = 0;
+        int a;
+        int b;
+        double result;
 
         try {
             a = Integer.parseInt(firstElement);
